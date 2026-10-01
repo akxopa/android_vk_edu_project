@@ -9,19 +9,31 @@
         android:id="@+id/main_lable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="128dp"
         android:text="First Activity"
-        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/b_to_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/purple_200"
+        android:text="Share"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/b_to_call" />
 
     <EditText
         android:id="@+id/user_text"
         android:layout_width="wrap_content"
         android:layout_height="25pt"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="208dp"
         android:ems="10"
         android:hint="Edit Text"
         android:inputType="text"
@@ -34,23 +46,25 @@
         android:id="@+id/b_to_second_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/purple_700"
         android:text="Go to second activity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_text"
         android:textColor="#FFFFFF"
-        android:backgroundTint="@color/my_button_color" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_text" />
 
     <Button
         android:id="@+id/b_to_call"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/purple_500"
         android:text="Call"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/b_to_second_activity" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

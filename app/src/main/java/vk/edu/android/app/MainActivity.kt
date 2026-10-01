@@ -13,13 +13,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val regex = Regex("^[\\w\\s+-]{1,40}$")
+
         val lable = findViewById<TextView>(R.id.main_lable)
         val userText: EditText = findViewById<EditText>(R.id.user_text)
         val button: Button = findViewById<Button>(R.id.b_to_second_activity)
         val callButton: Button = findViewById<Button>(R.id.b_to_call)
+        val shareButton = findViewById<Button>(R.id.b_to_share)
 
         button.setOnClickListener { // для перехода на вторую активити
-            val regex = Regex("^[\\w\\s+-]{1,40}$")
+
             val text = userText.text.toString().trim() // обработка входящего текста
 
             if (text.isBlank() || text.isEmpty()) {
@@ -34,8 +37,8 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        callButton.setOnClickListener {
-            // для перехода к приложению для звонков?
+        callButton.setOnClickListener { // для перехода к приложению для звонков
+
             val phoneRegex = Regex("^[0-9+\\-\\s()]{3,20}$")
             val phoneNumber = userText.text.toString().trim()
 
@@ -59,5 +62,28 @@ class MainActivity : AppCompatActivity() {
                 userText.error = "The App not found"
             }
         }
+
+        shareButton.setOnClickListener { // системный intent
+            val shareText = userText.text.toString().trim()
+
+            if (shareText.isBlank() || shareText.isEmpty()) {
+                userText.error = "Input text"
+                return@setOnClickListener
+            }
+
+            if (!regex.matches(shareText)) {
+                userText.error = "Only digits and letters fewer then 40 characters"
+                return@setOnClickListener
+            }
+
+            val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, shareText)
+            }
+
+            startActivity(Intent.createChooser(shareIntent, "Share with..."))
+        }
+
+
     }
 }
