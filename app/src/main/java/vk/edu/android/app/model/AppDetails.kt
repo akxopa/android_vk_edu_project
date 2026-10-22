@@ -1,9 +1,14 @@
 package vk.edu.android.app.model
 
 data class AppDetails(
-    val id: Int,
+    val id: String,
     val name: String,
-    val description: String,
-    val category: Category, // enum
-    val iconRes: Int
+    val developer: String,
+    val category: Category,
+    val ageRating: Int,
+    val size: Float,
+    val iconRes: Int,
+    val screenshotResList: List<Int>,
+    val shortDescription: String,
+    val description: String
 )
