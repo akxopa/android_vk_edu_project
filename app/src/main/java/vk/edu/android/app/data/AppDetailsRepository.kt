@@ -48,8 +48,6 @@ object AppDetailsRepository {
             size = 460.2f,
             iconRes = R.drawable.ic_notes,
             screenshotResList = listOf(
-                R.drawable.ic_notes_sc1,
-                R.drawable.ic_notes_sc1,
                 R.drawable.ic_notes_sc1
             ),
             shortDescription = "Простой и быстрый способ делать заметки.",
@@ -64,8 +62,6 @@ object AppDetailsRepository {
             size = 182.0f,
             iconRes = R.drawable.ic_kurlykurly,
             screenshotResList = listOf<Int>(
-                R.drawable.ic_kurlykurly_sc1,
-                R.drawable.ic_kurlykurly_sc1,
                 R.drawable.ic_kurlykurly_sc1
             ),
             shortDescription = "Отправляй сообщения, делись фото и не теряйся в бесконечных уведомлениях.",
@@ -80,8 +76,6 @@ object AppDetailsRepository {
             size = 182.0f,
             iconRes = R.drawable.ic_made_yourself,
             screenshotResList = listOf<Int>(
-                R.drawable.ic_made_yourself_sc1,
-                R.drawable.ic_made_yourself_sc1,
                 R.drawable.ic_made_yourself_sc1
             ),
             shortDescription = "Создай вещи для дома своими руками.",
@@ -97,8 +91,6 @@ object AppDetailsRepository {
             size = 230.0f,
             iconRes = R.drawable.ic_my_music,
             screenshotResList = listOf<Int>(
-                R.drawable.ic_my_music_sc1,
-                R.drawable.ic_my_music_sc1,
                 R.drawable.ic_my_music_sc1
             ),
             shortDescription = "Слушай, пой, исполняй.",
@@ -113,8 +105,6 @@ object AppDetailsRepository {
             ageRating = 0,
             size = 530.0f,
             screenshotResList = listOf<Int>(
-                R.drawable.ic_easy_movie_sc1,
-                R.drawable.ic_easy_movie_sc1,
                 R.drawable.ic_easy_movie_sc1
             ),
             iconRes = R.drawable.ic_easy_movie,
@@ -130,8 +120,6 @@ object AppDetailsRepository {
             size = 530.0f,
             iconRes = R.drawable.ic_ready_to_summer,
             screenshotResList = listOf<Int>(
-                R.drawable.ic_ready_to_summer_sc1,
-                R.drawable.ic_ready_to_summer_sc1,
                 R.drawable.ic_ready_to_summer_sc1
             ),
             shortDescription = "Личный тренер у тебя в телефоне. Накачайся к лету",
@@ -146,8 +134,6 @@ object AppDetailsRepository {
             size = 530.0f,
             iconRes = R.drawable.ic_drytool,
             screenshotResList = listOf<Int>(
-                R.drawable.ic_drytool_sc1,
-                R.drawable.ic_drytool_sc1,
                 R.drawable.ic_drytool_sc1
             ),
             shortDescription = "Создавай трассы. Лезь. Делись с друзьями",

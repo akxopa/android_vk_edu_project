@@ -41,6 +41,9 @@ fun AppNavHost() {
 
             AppDetailsScreen(
                 appId = appId,
+                onAppClick = { newAppId ->
+                    navController.navigate(AppRoutes.appDetails(newAppId))
+                },
                 onBack = {
                     navController.popBackStack()
                 }
