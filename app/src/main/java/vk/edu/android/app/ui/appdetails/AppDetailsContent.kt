@@ -48,7 +48,8 @@ import vk.edu.android.app.model.AppDetails
 fun AppDetailsContent(
     app: AppDetails,
     onBack: () -> Unit,
-    onAppClick: (String) -> Unit
+    onAppClick: (String) -> Unit,
+    similarApps: List<AppDetails>
 ) {
     Column(
         modifier = Modifier.fillMaxSize()
@@ -177,7 +178,7 @@ fun AppDetailsContent(
                     }
                 }
             }
-            SimilarAppsSection(AppDetailsRepository.apps, onAppClick = onAppClick, onBack = onBack)
+            SimilarAppsSection(similarApps, onAppClick = onAppClick, onBack = onBack)
         }
 
     }

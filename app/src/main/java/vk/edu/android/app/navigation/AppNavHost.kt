@@ -1,12 +1,15 @@
 package vk.edu.android.app.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import vk.edu.android.app.ui.appdetails.AppDetailsScreen
+import vk.edu.android.app.ui.appdetails.AppDetailsViewModel
 import vk.edu.android.app.ui.appdetails.AppListScreen
 
 @Composable
@@ -39,8 +42,14 @@ fun AppNavHost() {
                 ?.getString("appId")
                 .orEmpty()
 
+            val viewModel: AppDetailsViewModel = viewModel()
+
+            LaunchedEffect(appId) {
+                viewModel.loadAppDetails(appId)
+            }
+
             AppDetailsScreen(
-                appId = appId,
+                viewModel = viewModel,
                 onAppClick = { newAppId ->
                     navController.navigate(AppRoutes.appDetails(newAppId))
                 },
