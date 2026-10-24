@@ -10,6 +10,9 @@ kotlin = "2.4.0"
 composeBom = "2026.02.01"
 coilCompose = "3.6.3"
 material3 = "1.4.0"
+navigationCompose = "2.9.6"
+foundation = "1.12.1"
+litertSupportApi = "2.3.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,6 +32,10 @@ androidx-compose-material3 = { group = "androidx.compose.material3", name = "mat
 coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coilCompose" }
 coil-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coilCompose" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "foundation" }
+litert-support-api = { group = "com.google.ai.edge.litert", name = "litert-support-api", version.ref = "litertSupportApi" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
