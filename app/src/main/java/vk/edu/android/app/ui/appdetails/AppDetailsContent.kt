@@ -48,7 +48,8 @@ import vk.edu.android.app.model.AppDetails
 fun AppDetailsContent(
     app: AppDetails,
     onBack: () -> Unit,
-    onAppClick: (String) -> Unit
+    onAppClick: (String) -> Unit,
+    similarApps: List<AppDetails>
 ) {
     Column(
         modifier = Modifier.fillMaxSize()
@@ -113,7 +114,7 @@ fun AppDetailsContent(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-                    // Делаем всю шапку кликабельной.
+                    // вся шапка кликабельна
                     // indication = null и MutableInteractionSource убирают серый круглый инсерт при клике
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
@@ -122,7 +123,7 @@ fun AppDetailsContent(
                         isExpanded = !isExpanded
                     }
             ) {
-                // 2. Шапка блока: текст + стрелочка
+                // шапка блока: текст + стрелочка
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -133,7 +134,7 @@ fun AppDetailsContent(
                         style = MaterialTheme.typography.titleMedium
                     )
 
-                    // Меняем иконку стрелки в зависимости от состояния
+                    // меняем иконку стрелки в зависимости от состояния
                     Icon(
                         imageVector = if (isExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
                         contentDescription = if (isExpanded) "Свернуть" else "Развернуть",
@@ -141,7 +142,7 @@ fun AppDetailsContent(
                     )
                 }
 
-                // 3. Анимированный контент расхлопа
+                // анимированный контент расхлопа
                 AnimatedVisibility(visible = isExpanded) {
                     Text(
                         text = app.description,
@@ -177,7 +178,7 @@ fun AppDetailsContent(
                     }
                 }
             }
-            SimilarAppsSection(AppDetailsRepository.apps, onAppClick = onAppClick, onBack = onBack)
+            SimilarAppsSection(similarApps, onAppClick = onAppClick, onBack = onBack)
         }
 
     }
