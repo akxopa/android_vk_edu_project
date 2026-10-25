@@ -16,7 +16,7 @@ class AppDetailsViewModel : ViewModel() {
 
     //  состояние списка похожих приложений
     private val _similarApps = MutableStateFlow<List<AppDetails>>(emptyList())
-    val similarApp: StateFlow<List<AppDetails>> = _similarApps.asStateFlow()
+    val similarApps: StateFlow<List<AppDetails>> = _similarApps.asStateFlow()
 
     // метод при открытии экрана
     fun loadAppDetails(appId: String) {

@@ -1,62 +1,86 @@
 package vk.edu.android.app.ui.appdetails
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import vk.edu.android.app.data.AppDetailsRepository
+import kotlinx.coroutines.flow.collectLatest
+import vk.edu.android.app.R
+import vk.edu.android.app.model.AppDetails
+import vk.edu.android.app.model.Category
 import vk.edu.android.app.ui.theme.VkEduAndroidAppTheme
 
 @Composable
-fun AppListScreen(onAppClick: (String) -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .statusBarsPadding()
+fun AppListScreen(
+    viewModel: AppListViewModel,
+    onAppClick: (String) -> Unit
+) {
 
-    ) {
-        AppToolbar()
-        LazyColumn(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
-        ) {
-            items(
-                items = AppDetailsRepository.apps,
-                key = { app -> app.id }
-            ) { app ->
-                AppCardItem(
-                    details = app,
-                    onClick = {
-                        onAppClick(app.id)
-                    })
+    val snackbarHostState = remember { SnackbarHostState() }
 
-                androidx.compose.foundation.layout.Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(1.dp)
-                        .background(
-                            MaterialTheme.colorScheme.outlineVariant
-                        )
-                )
+    LaunchedEffect(viewModel) {
+        viewModel.uiEvent.collectLatest { event ->
+            when (event) {
+                is AppListUiEvent.ShowSnackbar -> {
+                    snackbarHostState.showSnackbar(message = event.message)
+                }
             }
         }
     }
+
+    AppListContent(
+        apps = viewModel.apps,
+        snackbarHostState = snackbarHostState,
+        onToolbarClick = { viewModel.onToolbarClick() },
+        onAppClick = onAppClick
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun AppListScreenPreview() {
     VkEduAndroidAppTheme() {
-        AppListScreen(onAppClick = {})
+
+        val mockApp1 = AppDetails(
+            id = "preview_id_1",
+            name = "Тестовое Первое",
+            developer = "VK",
+            category = Category.GAME,
+            ageRating = 12,
+            size = 42.5f,
+            iconRes = R.drawable.ic_ready_to_summer,
+            screenshotResList = listOf(
+                R.drawable.ic_heroes_sc1,
+                R.drawable.ic_heroes_sc2,
+                R.drawable.ic_heroes_sc3
+            ),
+            shortDescription = "Короткое описание",
+            description = "Это пример длинного описания приложения, которое будет красиво прокручиваться на экране вместе со скриншотами."
+        )
+
+        val mockApp2 = AppDetails(
+            id = "preview_id_2",
+            name = "Тестовое Второе",
+            developer = "VK",
+            category = Category.GAME,
+            ageRating = 12,
+            size = 42.5f,
+            iconRes = R.drawable.ic_my_music,
+            screenshotResList = listOf(
+                R.drawable.ic_weather_sc1,
+                R.drawable.ic_weather_sc2,
+                R.drawable.ic_weather_sc3
+            ),
+            shortDescription = "Короткое описание",
+            description = "Это пример длинного описания приложения, которое будет красиво прокручиваться на экране вместе со скриншотами."
+        )
+
+        AppListContent(
+            apps = listOf(mockApp1, mockApp2),
+            snackbarHostState = remember { SnackbarHostState() },
+            onToolbarClick = {},
+            onAppClick = {}
+        )
     }
 }

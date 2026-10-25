@@ -25,7 +25,7 @@ fun AppDetailsScreen(
     viewModel: AppDetailsViewModel
 ) {
     val app by viewModel.selectedApp.collectAsState()
-    val similarApps by viewModel.similarApp.collectAsState()
+    val similarApps by viewModel.similarApps.collectAsState()
 
     if (app == null) {
         Column(
@@ -42,7 +42,7 @@ fun AppDetailsScreen(
     } else {
         AppDetailsContent(
             app = app!!,
-            similarApps = similarApps, // Передаем список сюда
+            similarApps = similarApps,
             onAppClick = onAppClick,
             onBack = onBack
         )
