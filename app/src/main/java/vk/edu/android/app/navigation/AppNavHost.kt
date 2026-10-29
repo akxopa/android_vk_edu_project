@@ -14,7 +14,7 @@ import vk.edu.android.app.ui.appdetails.AppListScreen
 import vk.edu.android.app.ui.appdetails.AppListViewModel
 
 @Composable
-fun AppNavHost() {
+fun AppNavHost() { // Дополнить состоянияем загрузки и ошибки
     // контроллер. Хранит стэк экранов
     val navController = rememberNavController()
 
@@ -62,7 +62,8 @@ fun AppNavHost() {
                 onBack = {
                     // удаляем текущий экран приложения из стека
                     navController.popBackStack()
-                }
+                },
+                onInstallClick = {}
             )
         }
     }

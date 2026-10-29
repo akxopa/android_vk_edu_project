@@ -21,6 +21,7 @@ import vk.edu.android.app.model.Category
 @Composable
 fun AppDetailsScreen(
     onAppClick: (String) -> Unit,
+    onInstallClick: () -> Unit,
     onBack: () -> Unit,
     viewModel: AppDetailsViewModel
 ) {
@@ -44,7 +45,8 @@ fun AppDetailsScreen(
             app = app!!,
             similarApps = similarApps,
             onAppClick = onAppClick,
-            onBack = onBack
+            onBack = onBack,
+            onInstallClick = onInstallClick
         )
     }
 
@@ -88,6 +90,6 @@ fun AppDetailsScreenPreview() {
     )
 
     VkEduAndroidAppTheme {
-        AppDetailsContent(similarApps = listOf(mockApp1, mockApp2), onBack = {}, onAppClick = {}, app = mockApp1)
+        AppDetailsContent(similarApps = listOf(mockApp1, mockApp2), onBack = {}, onAppClick = {}, app = mockApp1, onInstallClick = {})
     }
 }

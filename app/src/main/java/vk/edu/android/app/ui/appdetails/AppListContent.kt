@@ -17,7 +17,6 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import vk.edu.android.app.data.AppDetailsRepository
 import vk.edu.android.app.model.AppDetails
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,7 +32,7 @@ fun AppListContent(
         topBar = {
             // ловим клики по всей панели
             Box(modifier = Modifier.clickable { onToolbarClick() }) {
-                AppToolbar()
+                AppListToolbar()
             }
         }
     ) { paddingValues ->
