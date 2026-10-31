@@ -5,24 +5,31 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import vk.edu.android.app.data.AppDetailsRepository
-import vk.edu.android.app.model.AppDetails
 
 class AppDetailsViewModel : ViewModel() {
     private val allApps = AppDetailsRepository.apps
 
-    // состояние текущего выбранного приложения
-    private val _selectedApp = MutableStateFlow<AppDetails?>(null)
-    val selectedApp: StateFlow<AppDetails?> = _selectedApp.asStateFlow()
+    // Начально состояние будет Loading
+    // Если данные есть, то показывай Success
+    // Если данные не пришли, то Error
 
-    //  состояние списка похожих приложений
-    private val _similarApps = MutableStateFlow<List<AppDetails>>(emptyList())
-    val similarApps: StateFlow<List<AppDetails>> = _similarApps.asStateFlow()
+    // начальное состояние экрана
+    private val _screenState = MutableStateFlow<AppDetailsScreenState>(AppDetailsScreenState.Loading)
+    val screenState: StateFlow<AppDetailsScreenState> = _screenState.asStateFlow()
 
     // метод при открытии экрана
     fun loadAppDetails(appId: String) {
-        val currentApp = allApps.find { it.id == appId }
-        _selectedApp.value = currentApp
+        _screenState.value = AppDetailsScreenState.Loading
 
-        _similarApps.value = allApps.filter { it.id != appId } // не показываем в списке приложений текущее приложение
+        val currentApp = allApps.find { it.id == appId }
+        if (currentApp == null) {
+            _screenState.value = AppDetailsScreenState.Error("Приложение с ID $appId не найдено.")
+        } else {
+            val similar = allApps.filter{ it.id != appId }
+            _screenState.value = AppDetailsScreenState.Success(
+                app = currentApp,
+                similarApps = similar
+            )
+        }
     }
 }

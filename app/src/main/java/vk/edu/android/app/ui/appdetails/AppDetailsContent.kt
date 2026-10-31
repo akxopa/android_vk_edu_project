@@ -47,7 +47,7 @@ fun AppDetailsContent(
             InstallButton(onClick = onInstallClick)
 
             // Описание подкат
-            Spacer(Modifier.height(32.dp))
+            Spacer(Modifier.height(16.dp))
             var isDescriptionExpanded by remember { mutableStateOf(false) }
             AppDescription(
                 description = app.description,

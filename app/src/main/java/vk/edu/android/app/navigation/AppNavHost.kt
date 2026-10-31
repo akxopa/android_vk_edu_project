@@ -10,8 +10,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import vk.edu.android.app.ui.appdetails.AppDetailsScreen
 import vk.edu.android.app.ui.appdetails.AppDetailsViewModel
-import vk.edu.android.app.ui.appdetails.AppListScreen
-import vk.edu.android.app.ui.appdetails.AppListViewModel
+import vk.edu.android.app.ui.applist.AppListScreen
+import vk.edu.android.app.ui.applist.AppListViewModel
 
 @Composable
 fun AppNavHost() { // Дополнить состоянияем загрузки и ошибки

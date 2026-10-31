@@ -1,4 +1,4 @@
-package vk.edu.android.app.ui.appdetails
+package vk.edu.android.app.ui.applist
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
