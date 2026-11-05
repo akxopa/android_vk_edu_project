@@ -1,15 +1,21 @@
 package vk.edu.android.app.ui.appdetails
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import vk.edu.android.app.R
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,31 +27,50 @@ import vk.edu.android.app.model.Category
 @Composable
 fun AppDetailsScreen(
     onAppClick: (String) -> Unit,
+    onInstallClick: () -> Unit,
     onBack: () -> Unit,
     viewModel: AppDetailsViewModel
 ) {
-    val app by viewModel.selectedApp.collectAsState()
-    val similarApps by viewModel.similarApps.collectAsState()
+    val state by viewModel.screenState.collectAsState()
 
-    if (app == null) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-        ) {
-            Text("Приложение не найдено")
-            Button(onClick = onBack) {
-                Text("Назад")
+    when (val currentState = state) {
+        is AppDetailsScreenState.Loading -> {
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
             }
         }
-        return
-    } else {
-        AppDetailsContent(
-            app = app!!,
-            similarApps = similarApps,
-            onAppClick = onAppClick,
-            onBack = onBack
-        )
+
+        is AppDetailsScreenState.Error -> {
+            Column(
+                modifier = Modifier.fillMaxSize().padding(16.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = currentState.message,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.error,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+
+                Button(onClick = onBack) {
+                    Text("Назад")
+                }
+            }
+        }
+
+        is AppDetailsScreenState.Success -> {
+            AppDetailsContent(
+                app = currentState.app,
+                onBack = onBack,
+                onAppClick = onAppClick,
+                onInstallClick = onInstallClick,
+                similarApps = currentState.similarApps
+            )
+        }
     }
 
 }
@@ -88,6 +113,11 @@ fun AppDetailsScreenPreview() {
     )
 
     VkEduAndroidAppTheme {
-        AppDetailsContent(similarApps = listOf(mockApp1, mockApp2), onBack = {}, onAppClick = {}, app = mockApp1)
+        AppDetailsContent(
+            similarApps = listOf(mockApp1, mockApp2),
+            onBack = {},
+            onAppClick = {},
+            app = mockApp1,
+            onInstallClick = {})
     }
 }

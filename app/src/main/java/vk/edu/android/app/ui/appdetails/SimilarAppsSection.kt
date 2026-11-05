@@ -34,15 +34,13 @@ fun SimilarAppsSection(
 ) {
     if (similarApps.isEmpty()) return
 
-    val pagerState = rememberPagerState( // как работает?
+    val pagerState = rememberPagerState(
         pageCount = { similarApps.size }
     )
 
-
-
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Text(
             text = "Похожие приложения",

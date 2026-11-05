@@ -1,4 +1,4 @@
-package vk.edu.android.app.ui.appdetails
+package vk.edu.android.app.ui.applist
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun AppToolbar() {
+fun AppListToolbar() {
 
     Row(
         modifier = Modifier
