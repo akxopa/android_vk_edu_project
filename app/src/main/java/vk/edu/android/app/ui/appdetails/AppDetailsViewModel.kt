@@ -1,17 +1,18 @@
 package vk.edu.android.app.ui.appdetails
 
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import vk.edu.android.app.data.AppDetailsRepository
+import javax.inject.Inject
 
-class AppDetailsViewModel : ViewModel() {
-    private val allApps = AppDetailsRepository.apps
-
-    // Начально состояние будет Loading
-    // Если данные есть, то показывай Success
-    // Если данные не пришли, то Error
+@HiltViewModel
+class AppDetailsViewModel @Inject constructor(
+    private val repository: AppDetailsRepository
+) : ViewModel() {
+    private val allApps = repository.apps
 
     // начальное состояние экрана
     private val _screenState = MutableStateFlow<AppDetailsScreenState>(AppDetailsScreenState.Loading)
