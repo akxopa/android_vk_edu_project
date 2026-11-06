@@ -12,6 +12,7 @@ import vk.edu.android.app.ui.appdetails.AppDetailsScreen
 import vk.edu.android.app.ui.appdetails.AppDetailsViewModel
 import vk.edu.android.app.ui.applist.AppListScreen
 import vk.edu.android.app.ui.applist.AppListViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun AppNavHost() { // Дополнить состоянияем загрузки и ошибки
@@ -23,7 +24,7 @@ fun AppNavHost() { // Дополнить состоянияем загрузки
         startDestination = AppRoutes.APP_LIST // стартовый экран
     ) {
         composable(AppRoutes.APP_LIST) {
-            val listViewModel: AppListViewModel = viewModel()
+            val listViewModel: AppListViewModel = hiltViewModel()
 
             AppListScreen(
                 viewModel = listViewModel,
@@ -47,7 +48,7 @@ fun AppNavHost() { // Дополнить состоянияем загрузки
                 ?.getString("appId")
                 .orEmpty()
 
-            val viewModel: AppDetailsViewModel = viewModel()
+            val viewModel: AppDetailsViewModel = hiltViewModel()
 
             LaunchedEffect(appId) {
                 viewModel.loadAppDetails(appId)
