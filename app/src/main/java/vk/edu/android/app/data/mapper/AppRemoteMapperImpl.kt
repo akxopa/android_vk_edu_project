@@ -1,6 +1,5 @@
 package vk.edu.android.app.data.mapper
 
-import vk.edu.android.app.data.dto.AppDetailsData
 import vk.edu.android.app.data.dto.remote.AppDetailsDto
 import vk.edu.android.app.data.dto.remote.CatalogItemDto
 import vk.edu.android.app.model.AppDetails

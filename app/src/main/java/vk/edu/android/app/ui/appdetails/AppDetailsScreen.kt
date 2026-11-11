@@ -2,7 +2,6 @@ package vk.edu.android.app.ui.appdetails
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import vk.edu.android.app.R
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,16 +12,16 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import vk.edu.android.app.model.AppDetails
 import vk.edu.android.app.model.AppListItem
-import vk.edu.android.app.ui.theme.VkEduAndroidAppTheme
 import vk.edu.android.app.model.Category
+import vk.edu.android.app.ui.theme.VkEduAndroidAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -32,7 +31,7 @@ fun AppDetailsScreen(
     onBack: () -> Unit,
     viewModel: AppDetailsViewModel
 ) {
-    val state by viewModel.screenState.collectAsState()
+    val state by viewModel.screenState.collectAsStateWithLifecycle()
 
     when (val currentState = state) {
         is AppDetailsScreenState.Loading -> {
