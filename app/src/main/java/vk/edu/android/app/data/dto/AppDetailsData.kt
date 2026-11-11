@@ -1,4 +1,4 @@
-package vk.edu.android.app.dto
+package vk.edu.android.app.data.dto
 
 import vk.edu.android.app.model.Category
 

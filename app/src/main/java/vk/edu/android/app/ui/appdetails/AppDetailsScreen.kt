@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import vk.edu.android.app.model.AppDetails
+import vk.edu.android.app.model.AppListItem
 import vk.edu.android.app.ui.theme.VkEduAndroidAppTheme
 import vk.edu.android.app.model.Category
 
@@ -85,13 +86,12 @@ fun AppDetailsScreenPreview() {
         category = Category.GAME,
         ageRating = 12,
         size = 42.5f,
-        iconRes = R.drawable.ic_ready_to_summer,
-        screenshotResList = listOf(
-            R.drawable.ic_heroes_sc1,
-            R.drawable.ic_heroes_sc2,
-            R.drawable.ic_heroes_sc3
+        iconUrl = "https://fastly.picsum.photos/id/239/200/200.jpg",
+        screenshotUrlList = listOf(
+            "https://fastly.picsum.photos/id/12/200/200.jpg",
+            "https://fastly.picsum.photos/id/13/200/200.jpg",
+            "https://fastly.picsum.photos/id/14/200/200.jpg"
         ),
-        shortDescription = "Короткое описание",
         description = "Это пример длинного описания приложения, которое будет красиво прокручиваться на экране вместе со скриншотами."
     )
 
@@ -102,19 +102,34 @@ fun AppDetailsScreenPreview() {
         category = Category.GAME,
         ageRating = 12,
         size = 42.5f,
-        iconRes = R.drawable.ic_my_music,
-        screenshotResList = listOf(
-            R.drawable.ic_weather_sc1,
-            R.drawable.ic_weather_sc2,
-            R.drawable.ic_weather_sc3
+        iconUrl = "https://fastly.picsum.photos/id/239/200/201.jpg",
+        screenshotUrlList = listOf(
+            "https://fastly.picsum.photos/id/12/200/201.jpg",
+            "https://fastly.picsum.photos/id/13/200/201.jpg",
+            "https://fastly.picsum.photos/id/14/200/201.jpg"
         ),
-        shortDescription = "Короткое описание",
         description = "Это пример длинного описания приложения, которое будет красиво прокручиваться на экране вместе со скриншотами."
+    )
+
+    val mockApp3 = AppListItem(
+        id = "preview_id_1",
+        name = "Тестовое Первое",
+        shortDescription = "Короткое описание первого приложения",
+        category = Category.GAME,
+        iconUrl = "https://fastly.picsum.photos/id/239/200/200.jpg"
+    )
+
+    val mockApp4 = AppListItem(
+        id = "preview_id_2",
+        name = "Тестовое Второе",
+        shortDescription = "Короткое описание второго приложения",
+        category = Category.ENTERTAINMENT,
+        iconUrl = "https://fastly.picsum.photos/id/238/200/200.jpg"
     )
 
     VkEduAndroidAppTheme {
         AppDetailsContent(
-            similarApps = listOf(mockApp1, mockApp2),
+            similarApps = listOf(mockApp3, mockApp4),
             onBack = {},
             onAppClick = {},
             app = mockApp1,

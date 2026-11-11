@@ -32,7 +32,7 @@ enum class Category {
     @SerialName("Фотография")
     PHOTOGRAPHY,
 
-    @SerialName("Здоровье")
+    @SerialName("Здоровье и фитнес")
     HEALTH,
 
     @SerialName("Спорт")
@@ -63,7 +63,10 @@ enum class Category {
     SHOPPING,
 
     @SerialName("Утилиты")
-    UTILITIES;
+    UTILITIES,
+
+    @SerialName("Неизвестная категория")
+    UNKNOWN;
 }
 
 fun Category.toDisplayName(): String {
@@ -77,7 +80,7 @@ fun Category.toDisplayName(): String {
         Category.MUSIC -> "Музыка"
         Category.VIDEO -> "Видео"
         Category.PHOTOGRAPHY -> "Фотография"
-        Category.HEALTH -> "Здоровье"
+        Category.HEALTH -> "Здоровье и фитнес"
         Category.SPORTS -> "Спорт"
         Category.NEWS -> "Новости"
         Category.BOOKS -> "Книги"
@@ -88,5 +91,6 @@ fun Category.toDisplayName(): String {
         Category.FOOD -> "Еда"
         Category.SHOPPING -> "Покупки"
         Category.UTILITIES -> "Утилиты"
+        Category.UNKNOWN -> "Неизвестная категория"
     }
 }

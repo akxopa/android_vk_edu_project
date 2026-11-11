@@ -1,7 +1,7 @@
 package vk.edu.android.app.data
 
 import vk.edu.android.app.R
-import vk.edu.android.app.dto.AppDetailsData
+import vk.edu.android.app.data.dto.AppDetailsData
 import vk.edu.android.app.model.Category
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -142,5 +142,6 @@ class AppDetailsDataRepository @Inject constructor() {
             description = "Драйтулинг: отмечай зацепки, создавай трассы и делись ими с друзьями. Фиксируй пролазы, чтобы отслеживать прогресс. Удобное приложение для любителей драйтулинга и скалолазания. Планируй маршруты и тренируйся эффективнее!"
 
         )
+
     )
 }

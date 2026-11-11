@@ -1,7 +1,6 @@
-package vk.edu.android.app.ui.appdetails
+package vk.edu.android.app.ui.applist
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,12 +22,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 import vk.edu.android.app.model.AppDetails
+import vk.edu.android.app.model.AppListItem
 import vk.edu.android.app.model.toDisplayName
 
 @Composable
 fun AppCardItem(
-    details: AppDetails,
+    details: AppListItem,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
@@ -40,8 +41,8 @@ fun AppCardItem(
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Image(
-            painter = painterResource(id = details.iconRes),
+        AsyncImage(
+            model = details.iconUrl,
             contentDescription = details.name,
             contentScale = ContentScale.Crop,
             modifier = Modifier

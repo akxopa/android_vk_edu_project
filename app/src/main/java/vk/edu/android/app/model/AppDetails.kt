@@ -7,8 +7,7 @@ data class AppDetails(
     val category: Category,
     val ageRating: Int,
     val size: Float,
-    val iconRes: Int,
-    val screenshotResList: List<Int> = emptyList(), // чтобы не проверять, что список существует
-    val shortDescription: String,
+    val iconUrl: String,
+    val screenshotUrlList: List<String>,
     val description: String
 )

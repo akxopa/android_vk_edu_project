@@ -18,10 +18,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 
 @Composable
 fun ScreenshotsList(
-    screenshots: List<Int>,
+    screenshots: List<String>,
     appName: String,
     modifier: Modifier = Modifier
 ) {
@@ -40,15 +41,15 @@ fun ScreenshotsList(
         items(
             items = screenshots,
             key = { resId -> resId }
-        ) { screenshotRes ->
-            Image(
-                painter = painterResource(id = screenshotRes),
+        ) { screenshotUrl ->
+            AsyncImage(
+                model = screenshotUrl,
                 contentDescription = "Скриншот приложения $appName",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .width(220.dp)
+                    .width(128.dp)
                     .height(390.dp)
-                    .clip(RoundedCornerShape(16.dp))
+                    .clip(RoundedCornerShape(12.dp))
             )
         }
     }

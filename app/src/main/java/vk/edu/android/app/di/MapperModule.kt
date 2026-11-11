@@ -4,14 +4,14 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import vk.edu.android.app.data.mapper.AppDetailsMapper
-import vk.edu.android.app.data.mapper.AppDetailsMapperImpl
+import vk.edu.android.app.data.mapper.AppRemoteMapper
+import vk.edu.android.app.data.mapper.AppRemoteMapperImpl
 
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class MapperModule {
     @Binds
     abstract fun bindAppDetailsMapper(
-        impl: AppDetailsMapperImpl
-    ): AppDetailsMapper
+        impl: AppRemoteMapperImpl
+    ): AppRemoteMapper
 }

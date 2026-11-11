@@ -17,6 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import vk.edu.android.app.model.AppDetails
+import vk.edu.android.app.model.AppListItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -25,7 +26,7 @@ fun AppDetailsContent(
     onBack: () -> Unit,
     onAppClick: (String) -> Unit,
     onInstallClick: () -> Unit,
-    similarApps: List<AppDetails>
+    similarApps: List<AppListItem>
 ) {
     Scaffold(
         topBar = {
@@ -56,12 +57,12 @@ fun AppDetailsContent(
 
             // Скриншоты
             Spacer(Modifier.height(8.dp))
-            if (app.screenshotResList.isNotEmpty()) {
-                ScreenshotsList(screenshots = app.screenshotResList, appName = app.name)
+            if (app.screenshotUrlList.isNotEmpty()) {
+                ScreenshotsList(screenshots = app.screenshotUrlList, appName = app.name)
             }
             // Похожие приложения
             Spacer(Modifier.height(16.dp))
-            SimilarAppsSection(similarApps, onAppClick = onAppClick, onBack = onBack)
+            SimilarAppsSection(similarApps, onAppClick = onAppClick)
         }
     }
 
