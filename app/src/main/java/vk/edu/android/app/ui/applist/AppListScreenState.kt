@@ -1,6 +1,5 @@
 package vk.edu.android.app.ui.applist
 
-import vk.edu.android.app.model.AppDetails
 import vk.edu.android.app.model.AppListItem
 
 sealed interface AppListScreenState {

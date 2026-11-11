@@ -11,8 +11,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import vk.edu.android.app.data.AppDetailsRepository
-import vk.edu.android.app.model.AppDetails
-import vk.edu.android.app.model.AppListItem
 import javax.inject.Inject
 import kotlin.coroutines.cancellation.CancellationException
 

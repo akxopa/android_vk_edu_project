@@ -17,7 +17,6 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import vk.edu.android.app.model.AppDetails
 import vk.edu.android.app.model.AppListItem
 
 @OptIn(ExperimentalMaterial3Api::class)
