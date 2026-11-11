@@ -44,9 +44,11 @@ fun AppNavHost() { // Дополнить состоянияем загрузки
                 }
             )
         ) { backStackEntry ->
-            val appId = backStackEntry.arguments
-                ?.getString("appId")
-                .orEmpty()
+            val appId = requireNotNull(
+                backStackEntry.arguments?.getString("appId")
+            ) {
+                "Не передан appId для экрана подробностей"
+            }
 
             val viewModel: AppDetailsViewModel = hiltViewModel()
 

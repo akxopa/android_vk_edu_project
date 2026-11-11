@@ -1,5 +1,6 @@
 package vk.edu.android.app.ui.applist
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,18 +12,19 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import vk.edu.android.app.data.AppDetailsRepository
 import vk.edu.android.app.model.AppDetails
+import vk.edu.android.app.model.AppListItem
 import javax.inject.Inject
+import kotlin.coroutines.cancellation.CancellationException
 
 @HiltViewModel
 class AppListViewModel @Inject constructor(
     private val repository: AppDetailsRepository
 ) : ViewModel() {
-    val apps: List<AppDetails> = repository.apps
 
     // Начальное состояние
     private val _screenStateAppList =
         MutableStateFlow<AppListScreenState>(AppListScreenState.Loading)
-    val screenStateAppList : StateFlow<AppListScreenState> = _screenStateAppList.asStateFlow()
+    val screenStateAppList: StateFlow<AppListScreenState> = _screenStateAppList.asStateFlow()
 
     private val _uiEvent = Channel<AppListUiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
@@ -32,17 +34,34 @@ class AppListViewModel @Inject constructor(
     }
 
     fun loadApps() {
-        viewModelScope.launch { // запускаем корутину в фоновом процессе
+        viewModelScope.launch {
             _screenStateAppList.value = AppListScreenState.Loading // передаем текущее состояние
             try {
-                val data = repository.apps
-                if (data.isEmpty()) {
-                    _screenStateAppList.value = AppListScreenState.Error("Список приложений пуст")
-                } else {
-                    _screenStateAppList.value = AppListScreenState.Success(apps = data)
+                val allApps = repository.getApps()
+
+                Log.d("AppListViewModel", "Получено приложений: ${allApps.size}")
+                allApps.forEach{ app ->
+                    Log.d(
+                        "AppListViewModel", "Приложение: ${app.name}, ID: ${app.id}"
+                    )
                 }
+
+                _screenStateAppList.value =
+                    if (allApps.isEmpty()) {
+                        AppListScreenState.Error("Список приложений пуст")
+                    } else {
+                        AppListScreenState.Success(apps = allApps)
+                    }
+
+            } catch (e: CancellationException) {
+                throw e
             } catch (e: Exception) {
-                _screenStateAppList.value = AppListScreenState.Error("Не удалось загрузить данные: ${e.localizedMessage}")
+                Log.e("AppListViewModel", "Ошибка загрузки каталога", e)
+                _screenStateAppList.value =
+                    AppListScreenState.Error(
+                        "Не удалось загрузить данные: " +
+                                (e.localizedMessage ?: "Неизвестная ошибка")
+                    )
             }
         }
     }

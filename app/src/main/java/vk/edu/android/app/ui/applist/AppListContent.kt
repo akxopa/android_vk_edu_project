@@ -18,12 +18,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import vk.edu.android.app.model.AppDetails
-import vk.edu.android.app.ui.appdetails.AppCardItem
+import vk.edu.android.app.model.AppListItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppListContent(
-    apps: List<AppDetails>,
+    apps: List<AppListItem>,
     snackbarHostState: SnackbarHostState,
     onToolbarClick: () -> Unit,
     onAppClick: (String) -> Unit

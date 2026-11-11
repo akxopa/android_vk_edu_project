@@ -1,6 +1,5 @@
 package vk.edu.android.app.ui.appdetails
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -21,16 +20,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import vk.edu.android.app.model.AppDetails
+import coil3.compose.AsyncImage
+import vk.edu.android.app.model.AppListItem
 
 @Composable
 fun SimilarAppsSection(
-    similarApps: List<AppDetails>,
+    similarApps: List<AppListItem>,
     onAppClick: (String) -> Unit,
-    onBack: () -> Unit
 ) {
     if (similarApps.isEmpty()) return
 
@@ -72,7 +70,7 @@ fun SimilarAppsSection(
 
 @Composable
 private fun SimilarAppCard(
-    app: AppDetails,
+    app: AppListItem,
     onClick: () -> Unit
 ) {
     Card(
@@ -84,8 +82,8 @@ private fun SimilarAppCard(
             modifier = Modifier.padding(12.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Image(
-                painter = painterResource(id = app.iconRes),
+            AsyncImage(
+                model = app.iconUrl,
                 contentDescription = app.name,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier

@@ -1,6 +1,5 @@
 package vk.edu.android.app.ui.appdetails
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,10 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import vk.edu.android.app.R
+import coil3.compose.AsyncImage
 import vk.edu.android.app.model.AppDetails
 import vk.edu.android.app.model.Category
 import vk.edu.android.app.model.toDisplayName
@@ -33,8 +31,8 @@ fun AppDetailsHeader(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Image(
-            painter = painterResource(id = app.iconRes),
+        AsyncImage(
+            model = app.iconUrl,
             contentDescription = app.name,
             modifier = Modifier
                 .size(130.dp)
@@ -98,13 +96,12 @@ fun AppDetailsHeaderPreview() {
         category = Category.GAME,
         ageRating = 12,
         size = 42.5f,
-        iconRes = R.drawable.ic_ready_to_summer,
-        screenshotResList = listOf(
-            R.drawable.ic_heroes_sc1,
-            R.drawable.ic_heroes_sc2,
-            R.drawable.ic_heroes_sc3
+        iconUrl = "https://fastly.picsum.photos/id/239/200/200.jpg",
+        screenshotUrlList = listOf(
+            "https://fastly.picsum.photos/id/12/200/200.jpg",
+            "https://fastly.picsum.photos/id/13/200/200.jpg",
+            "https://fastly.picsum.photos/id/14/200/200.jpg"
         ),
-        shortDescription = "Короткое описание",
         description = "Это пример длинного описания приложения, которое будет красиво прокручиваться на экране вместе со скриншотами."
     )
 
