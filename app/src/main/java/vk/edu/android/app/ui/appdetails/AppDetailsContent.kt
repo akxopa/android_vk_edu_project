@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import vk.edu.android.app.model.AppDetails
 import vk.edu.android.app.model.AppListItem
+import vk.edu.android.app.model.InstallState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -26,6 +27,7 @@ fun AppDetailsContent(
     onBack: () -> Unit,
     onAppClick: (String) -> Unit,
     onInstallClick: () -> Unit,
+    installState: InstallState,
     similarApps: List<AppListItem>
 ) {
     Scaffold(
@@ -45,7 +47,7 @@ fun AppDetailsContent(
 
             // Кнопка установки
             Spacer(Modifier.height(16.dp))
-            InstallButton(onClick = onInstallClick)
+            InstallButton(onClick = onInstallClick, installState = installState)
 
             // Описание подкат
             Spacer(Modifier.height(16.dp))

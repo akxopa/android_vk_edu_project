@@ -21,6 +21,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import vk.edu.android.app.model.AppDetails
 import vk.edu.android.app.model.AppListItem
 import vk.edu.android.app.model.Category
+import vk.edu.android.app.model.InstallState
 import vk.edu.android.app.ui.theme.VkEduAndroidAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -67,8 +68,11 @@ fun AppDetailsScreen(
                 app = currentState.app,
                 onBack = onBack,
                 onAppClick = onAppClick,
-                onInstallClick = onInstallClick,
-                similarApps = currentState.similarApps
+                onInstallClick = {
+                    viewModel.onInstallClick()
+                },
+                similarApps = currentState.similarApps,
+                installState = currentState.installState
             )
         }
     }
@@ -132,6 +136,7 @@ fun AppDetailsScreenPreview() {
             onBack = {},
             onAppClick = {},
             app = mockApp1,
-            onInstallClick = {})
+            onInstallClick = {},
+            installState = InstallState.Installing(75))
     }
 }
