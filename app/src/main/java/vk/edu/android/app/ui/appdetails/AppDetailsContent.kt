@@ -17,8 +17,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import vk.edu.android.app.model.AppDetails
+import vk.edu.android.app.model.AppInstallStatus
 import vk.edu.android.app.model.AppListItem
-import vk.edu.android.app.model.InstallState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -27,7 +27,7 @@ fun AppDetailsContent(
     onBack: () -> Unit,
     onAppClick: (String) -> Unit,
     onInstallClick: () -> Unit,
-    installState: InstallState,
+    installState: AppInstallStatus,
     similarApps: List<AppListItem>
 ) {
     Scaffold(

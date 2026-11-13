@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import vk.edu.android.app.data.AppDetailsRepository
+import vk.edu.android.app.data.repository.AppDetailsRepository
 import javax.inject.Inject
 import kotlin.coroutines.cancellation.CancellationException
 

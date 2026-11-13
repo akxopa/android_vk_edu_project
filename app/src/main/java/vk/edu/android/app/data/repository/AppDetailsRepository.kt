@@ -1,4 +1,4 @@
-package vk.edu.android.app.data
+package vk.edu.android.app.data.repository
 
 import vk.edu.android.app.model.AppDetails
 import vk.edu.android.app.model.AppListItem
