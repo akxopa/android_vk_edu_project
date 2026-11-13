@@ -1,4 +1,4 @@
-package vk.edu.android.app.data
+package vk.edu.android.app.data.repository
 
 import vk.edu.android.app.data.mapper.AppRemoteMapper
 import vk.edu.android.app.data.remote.AppRemoteDataSource

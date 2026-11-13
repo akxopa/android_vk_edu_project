@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import vk.edu.android.app.model.AppDetails
+import vk.edu.android.app.model.AppInstallStatus
 import vk.edu.android.app.model.AppListItem
 import vk.edu.android.app.model.Category
 import vk.edu.android.app.ui.theme.VkEduAndroidAppTheme
@@ -45,7 +46,9 @@ fun AppDetailsScreen(
 
         is AppDetailsScreenState.Error -> {
             Column(
-                modifier = Modifier.fillMaxSize().padding(16.dp),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -67,8 +70,11 @@ fun AppDetailsScreen(
                 app = currentState.app,
                 onBack = onBack,
                 onAppClick = onAppClick,
-                onInstallClick = onInstallClick,
-                similarApps = currentState.similarApps
+                onInstallClick = {
+                    viewModel.onInstallClick()
+                },
+                similarApps = currentState.similarApps,
+                installState = currentState.installStatus
             )
         }
     }
@@ -132,6 +138,8 @@ fun AppDetailsScreenPreview() {
             onBack = {},
             onAppClick = {},
             app = mockApp1,
-            onInstallClick = {})
+            onInstallClick = {},
+            installState = AppInstallStatus.Installing(75)
+        )
     }
 }
